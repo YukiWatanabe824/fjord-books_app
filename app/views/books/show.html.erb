@@ -1,24 +1,24 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-<strong><%= t('translate.book_title') %>:</strong>
+<strong><%= t('book_app.book_title') %>:</strong>
   <%= @book.title %>
 </p>
 
 <p>
-  <strong><%= t('translate.memo') %>:</strong>
+  <strong><%= t('book_app.memo') %>:</strong>
   <%= @book.memo %>
 </p>
 
 <p>
-  <strong><%= t('translate.author') %>:</strong>
+  <strong><%= t('book_app.author') %>:</strong>
   <%= @book.author %>
 </p>
 
 <p>
-  <strong><%= t('translate.picture') %>:</strong>
+  <strong><%= t('book_app.picture') %>:</strong>
   <%= image_tag(@book.picture_url) if @book.picture.present? %>
 </p>
 
-<%= link_to t('translate.edit'), edit_book_path(@book) %> |
-<%= link_to t('translate.back'), books_path %>
+<%= link_to t('book_app.edit'), edit_book_path(@book) %> |
+<%= link_to t('book_app.back'), books_path %>

@@ -205,7 +205,7 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
-  translate:
+  book_app:
     main_title: '書籍'
     book_title: 'タイトル'
     memo: '概要'
@@ -213,16 +213,17 @@ ja:
     picture: '画像'
     show: '詳細を表示'
     edit: '編集する'
-    destroy: '削除する'
     new_book: '新たな書籍を追加する'
     confirm: '削除します。よろしいですか？'
     editing: '編集'
     back: '戻る'
     new: '新規追加'
     error: '保存を却下しました'
-  bookcreate:
-    success: '作成しました'
-  bookupdate:
-    success: '保存しました'
-  bookdestroy:
-    success: '本を削除しました'
+    destroy: '削除する'
+  book:
+    create:
+      success: '作成しました'
+    update:
+      success: '保存しました'
+    destroy:
+      success: '本を削除しました'
