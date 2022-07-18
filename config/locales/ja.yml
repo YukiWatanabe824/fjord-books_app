@@ -205,21 +205,20 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
-  book_app:
-    main_title: '書籍'
-    book_title: 'タイトル'
-    memo: '概要'
-    author: '著者'
-    picture: '画像'
-    show: '詳細を表示'
-    edit: '編集する'
-    new_book: '新たな書籍を追加する'
-    confirm: '削除します。よろしいですか？'
-    editing: '編集'
-    back: '戻る'
-    new: '新規追加'
-    error: '保存を却下しました'
-    destroy: '削除する'
+  main_title: '書籍'
+  book_title: 'タイトル'
+  memo: '概要'
+  author: '著者'
+  picture: '画像'
+  show: '詳細を表示'
+  edit: '編集する'
+  new_book: '新たな書籍を追加する'
+  confirm: '削除します。よろしいですか？'
+  editing: '編集'
+  back: '戻る'
+  new: '新規追加'
+  error: '保存を却下しました'
+  destroy: '削除する'
   book:
     create:
       success: '作成しました'
