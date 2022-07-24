@@ -206,10 +206,6 @@ ja:
       short: "%m/%d %H:%M"
     pm: 午後
   main_title: '書籍'
-  book_title: 'タイトル'
-  memo: '概要'
-  author: '著者'
-  picture: '画像'
   show: '詳細を表示'
   edit: '編集する'
   new_book: '新たな書籍を追加する'
