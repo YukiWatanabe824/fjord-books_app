@@ -215,12 +215,30 @@ ja:
       delete_confirm: よろしいですか？
       title_new: "%{name}の新規作成"
       title_edit: "%{name}の編集"
+      user_list: 'ユーザー一覧'
+      books_list: '本一覧'
+      edit_profile: 'プロフィール変更'
+      logout: 'ログアウト'
+      sign_up: 'サインアップ'
+      sign_in: 'ログイン'
     pagination:
       first: '最初'
       last: '最後'
       previous: '前'
       next: '次'
       truncate: '...'
+    devise:
+      name: 'ユーザーネーム'
+      post_code: '郵便番号'
+      address: '住所'
+      introduction: '自己紹介'
+    user:
+      id: 'ユーザーID'
+      name: 'ユーザー名'
+      post_code: '郵便番号'
+      address: '住所'
+      introduction: '自己紹介'
+      mail_address: 'メールアドレス'
   controllers:
     common:
       notice_create: "%{name}が作成されました。"

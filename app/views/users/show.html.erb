@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>ユーザー詳細</h1>
+
+<p>
+  <strong><%= t('views.user.id') %>:</strong>
+  <%= @user.id %>
+</p>
+
+<p>
+  <strong><%= t('views.user.name') %>:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
+<strong><%= t('views.user.mail_address') %>:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+<strong><%= t('views.user.post_code') %>:</strong>
+  <%= @user.post_code %>
+</p>
+
+<p>
+<strong><%= t('views.user.address') %>:</strong>
+  <%= @user.address %>
+</p>
+
+<p>
+<strong><%= t('views.user.introduction') %>:</strong>
+  <%= @user.introduction %>
+</p>
+
+<%= link_to t('views.common.user_list'), users_path %>
