@@ -64,6 +64,13 @@ GEM
       public_suffix (>= 2.0.2, < 5.0)
     ast (2.4.2)
     bcrypt (3.1.18)
+    better_html (2.0.1)
+      actionview (>= 6.0)
+      activesupport (>= 6.0)
+      ast (~> 2.0)
+      erubi (~> 1.4)
+      parser (>= 2.4)
+      smart_properties
     bindex (0.8.1)
     bootsnap (1.12.0)
       msgpack (~> 1.2)
@@ -98,6 +105,13 @@ GEM
     devise-i18n (1.10.2)
       devise (>= 4.8.0)
     digest (3.1.0)
+    erb_lint (0.2.0)
+      activesupport
+      better_html (>= 2.0.1)
+      parser (>= 2.7.1.4)
+      rainbow
+      rubocop
+      smart_properties
     erubi (1.10.0)
     faker (2.21.0)
       i18n (>= 1.8.11, < 2)
@@ -262,6 +276,7 @@ GEM
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
     semantic_range (3.0.0)
+    smart_properties (1.17.0)
     spring (4.0.0)
     sprockets (4.1.1)
       concurrent-ruby (~> 1.0)
@@ -315,6 +330,7 @@ DEPENDENCIES
   carrierwave
   devise
   devise-i18n
+  erb_lint
   faker
   i18n_generators
   jbuilder (~> 2.7)
