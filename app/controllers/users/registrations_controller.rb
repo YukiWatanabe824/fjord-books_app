@@ -20,12 +20,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  def update
-    super
-    if user_update_params[:avatar].present?
-      @user.avatar.attach(user_update_params[:avatar])
-    end
-  end
+  # def update
+  #   super
+  # end
 
   # DELETE /resource
   # def destroy
