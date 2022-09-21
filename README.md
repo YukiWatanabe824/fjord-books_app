@@ -35,10 +35,10 @@ $ git clone https://github.com/自分のアカウント名/fjord-books_app.git
     1. `bundle install` を実行
     2. `yarn install` を実行
     3. `rails db:reset` を実行（既存の開発用DBがある場合もいったんdropして再作成します。また、サンプルデータも自動的に作成されます）
-    4. `bundle exec rubocop` を実行して警告が出ないことを確認
+    4. `bundle exec rubocop` と `bundle exec erblint --lint-all` を実行して警告が出ないことを確認
 4. `rails s` して動作確認し、スタート地点のアプリケーション仕様を把握してください。
 5. プラクティスで指示されたコードを書いてください。
-6. ソースコードが完成したら提出前にrubocopを実行し、警告の箇所を修正してください。
+6. ソースコードが完成したら提出前にrubocopとerblintを実行し、警告の箇所を修正してください。
 7. 自分が書いたコードをGitHubにpushしてください。
 8. 以下の注意点に気を付けながら自分のリポジトリへのPull Requestを作成し、URLを提出してください。
     - OK `自分のアカウント名/02-i18n` ← `自分のアカウント名/my-i18n`
