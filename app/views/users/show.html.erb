@@ -33,6 +33,28 @@
   <% end %>
 </p>
 
+<p>
+<%= link_to 'フォロー', followings_user_path %>:<%= @user.followings.count %>
+</p>
+
+<p>
+<%= link_to 'フォロワー', followers_user_path %>:<%= @user.followers.count %>
+</p>
+
+<% if current_user == @user %>
+<% else %>
+  <% if current_user.following?(@user) %>
+    <%= form_with id: current_user.active_relationships.find_by(followed_id: @user.id), url: followingandfollower_path, method: :delete do |f| %>
+      <%= f.submit "フォローを外す" %>
+    <% end %>
+  <% else %>
+    <%= form_with model: current_user.active_relationships, url: followingandfollowers_path do |f| %>
+      <%= f.hidden_field :followed_id, value: @user.id %>
+      <%= f.submit "フォローする" %>
+    <% end %>
+  <% end %>
+<% end %>
+
 <% if current_user == @user %>
   <%= link_to t('views.common.edit'), edit_user_registration_path %> |
 <% end %>
