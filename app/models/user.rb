@@ -6,14 +6,15 @@ class User < ApplicationRecord
 
   has_one_attached :avatar
 
-  has_many :active_relationships, class_name: "FollowingAndFollower",
-                                  foreign_key: "follower_id",
+  has_many :active_relationships, class_name: 'FollowingAndFollower',
+                                  inverse_of: 'follower',
+                                  foreign_key: 'follower_id',
                                   dependent: :destroy
 
-  has_many :passive_relationships, class_name: "FollowingAndFollower",
-                                   foreign_key: "followed_id",
+  has_many :passive_relationships, class_name: 'FollowingAndFollower',
+                                   inverse_of: 'followed',
+                                   foreign_key: 'followed_id',
                                    dependent: :destroy
-
 
   has_many :followings, through: :active_relationships, source: :followed
 
@@ -30,5 +31,4 @@ class User < ApplicationRecord
   def following?(other_user)
     followings.include?(other_user)
   end
-
 end
