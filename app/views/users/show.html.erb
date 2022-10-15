@@ -33,6 +33,27 @@
   <% end %>
 </p>
 
+<p>
+<%= link_to User.human_attribute_name(:following) , followings_user_path %>:<%= @user.followings.count %>
+</p>
+
+<p>
+<%= link_to User.human_attribute_name(:follower), followers_user_path %>:<%= @user.followers.count %>
+</p>
+
+<% if current_user != @user %>
+  <% if current_user.following?(@user) %>
+    <%= form_with id: current_user.active_relationships.find_by(followed_id: @user.id), url: followingandfollower_path, method: :delete do |f| %>
+      <%= f.submit User.human_attribute_name(:unfollow) %>
+    <% end %>
+  <% else %>
+    <%= form_with model: current_user.active_relationships, url: followingandfollowers_path do |f| %>
+      <%= f.hidden_field :followed_id, value: @user.id %>
+      <%= f.submit User.human_attribute_name(:follow) %>
+    <% end %>
+  <% end %>
+<% end %>
+
 <% if current_user == @user %>
   <%= link_to t('views.common.edit'), edit_user_registration_path %> |
 <% end %>
