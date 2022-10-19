@@ -2,7 +2,11 @@
 
 <p>
   <strong>User:</strong>
-  <%= @report.user_id %>
+  <% if @report.user.name == "" %>
+    <td><%= @report.user.email %></td>
+  <% else %>
+    <td><%= @report.user.name %></td>
+  <% end %>
 </p>
 
 <p>
@@ -15,5 +19,7 @@
   <%= @report.content %>
 </p>
 
-<%= link_to 'Edit', edit_report_path(@report) %> |
+<% if current_user.id == @report.user_id %>
+  <%= link_to 'Edit', edit_report_path(@report) %> |
+<% end %>
 <%= link_to 'Back', reports_path %>
