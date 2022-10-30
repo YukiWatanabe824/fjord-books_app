@@ -4,5 +4,5 @@ class Report < ApplicationRecord
   validates :user_id, presence: true
   validates :content, presence: true
   validates :title, presence:true
-  has_many :comments, as: :commentable
+  has_many :comments, as: :commentable, dependent: :destroy
 end

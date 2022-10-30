@@ -1,7 +1,7 @@
-<h1>Report</h1>
+<h1><%= Report.model_name.human %></h1>
 
 <p>
-  <strong>User:</strong>
+  <strong><%= Report.human_attribute_name(:user) %>:</strong>
   <% if @report.user.name == "" %>
     <td><%= @report.user.email %></td>
   <% else %>
@@ -10,23 +10,23 @@
 </p>
 
 <p>
-  <strong>Title:</strong>
+  <strong><%= Report.human_attribute_name(:title) %>:</strong>
   <%= @report.title %>
 </p>
 
 <p>
-  <strong>Content:</strong>
+  <strong><%= Report.human_attribute_name(:content) %>:</strong>
   <%= @report.content %>
 </p>
 
 
-<h2>Comments</h2>
+<h2><%= Comment.model_name.human %></h2>
 <table>
   <thead>
     <tr>
-      <th>User</th>
-      <th>Content</th>
-      <th>Time</th>
+      <th><%= Comment.human_attribute_name(:user) %></th>
+      <th><%= Comment.human_attribute_name(:content) %></th>
+      <th><%= Comment.human_attribute_name(:posted_time) %></th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -45,8 +45,8 @@
         <% else %>
           <td><%= comment.created_at %></td>
         <% end %>
-        <td><%= link_to 'Show', [@report, comment] %></td>
-        <td><%= link_to 'Destroy', [@report, comment], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to t('views.common.show'), [@report, comment] %></td>
+        <td><%= link_to t('views.common.destroy'), [@report, comment], method: :delete, data: { confirm: t('views.common.delete_confirm') } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -57,8 +57,8 @@
 <%= render 'comments/new' %>
 
 <% if current_user.id == @report.user_id %>
-  <%= link_to 'Edit', edit_report_path(@report) %> |
+  <%= link_to t('views.common.edit'), edit_report_path(@report) %> |
 <% end %>
-<%= link_to 'Back', reports_path %>
+<%= link_to t('views.common.back'), reports_path %>
 
 

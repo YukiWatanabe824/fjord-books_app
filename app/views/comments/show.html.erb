@@ -1,7 +1,7 @@
-<p id="notice"><%= notice %></p>
+<h1><%= t('views.common.title_show', name: Comment.model_name.human) %></h1>
 
 <p>
-  <strong>User:</strong>
+  <strong><%= Comment.human_attribute_name(:user) %>:</strong>
   <% if @comment.user.name == "" %>
     <td><%= @comment.user.email %></td>
   <% else %>
@@ -10,18 +10,18 @@
 </p>
 
 <p>
-  <strong>Content:</strong>
+  <strong><%= Comment.human_attribute_name(:content) %>:</strong>
   <%= @comment.content %>
 </p>
 
 <p>
-  <strong>Post time:</strong>
+  <strong><%= Comment.human_attribute_name(:posted_time) %>:</strong>
   <%= @comment.created_at %>
 </p>
 
 <p>
-  <strong>Update time:</strong>
+  <strong><%= Comment.human_attribute_name(:updated_time) %>:</strong>
   <%= @comment.updated_at %>
 </p>
 
-<%= link_to 'Back', @commentable %>
+<%= link_to t('views.common.back'), @commentable %>

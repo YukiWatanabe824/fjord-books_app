@@ -2,18 +2,8 @@ class CommentsController < ApplicationController
   before_action :set_book_or_report
   before_action :set_comment, only: %i[ show edit update destroy ]
 
-  # GET /comments or /comments.json
-  def index
-    @comments = comment.all
-  end
-
   # GET /comments/1 or /comments/1.json
   def show
-  end
-
-  # GET /comments/new
-  def new
-    @comment = @commentable.comments.build
   end
 
   # GET /comments/1/edit
@@ -26,7 +16,7 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to [@commentable], notice: "comment was successfully created." }
+        format.html { redirect_to [@commentable], notice: t('controllers.common.notice_create', name: Comment.model_name.human) }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -37,7 +27,7 @@ class CommentsController < ApplicationController
   def update
     respond_to do |format|
       if @comment.update(comment_params)
-        format.html { redirect_to comment_url(@comment), notice: "comment was successfully updated." }
+        format.html { redirect_to comment_url(@comment), notice: t('controllers.common.notice_update', name: Comment.model_name.human) }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
@@ -49,13 +39,11 @@ class CommentsController < ApplicationController
     @comment.destroy
 
     respond_to do |format|
-      format.html { redirect_to @commentable, notice: "comment was successfully destroyed." }
+      format.html { redirect_to @commentable, notice: t('controllers.common.notice_destroy', name: Comment.model_name.human) }
     end
   end
 
   private
-
-    # Bookのパラメータを拾う
     def set_book_or_report
       @commentable = if request.url.include?("reports")
                        Report.find(params[:report_id])

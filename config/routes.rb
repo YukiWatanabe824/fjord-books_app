@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   concern :commentable do
-    resources :comments
+    resources :comments, only: [:show, :edit, :create, :update, :destroy]
   end
   resources :reports, concerns: :commentable 
   resources :books, concerns: :commentable

@@ -1,13 +1,11 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Reports</h1>
+<h1><%= Report.model_name.human %></h1>
 
 <table>
   <thead>
     <tr>
-      <th>User</th>
-      <th>Title</th>
-      <th>Content</th>
+      <th><%= Report.human_attribute_name(:user) %></th>
+      <th><%= Report.human_attribute_name(:title) %></th>
+      <th><%= Report.human_attribute_name(:posted_time) %></th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -22,8 +20,8 @@
         <% end %>
         <td><%= report.title %></td>
         <td><%= report.created_at %></td>
-        <td><%= link_to 'Show', report %></td>
-        <td><%= link_to 'Destroy', report, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to t('views.common.show'), report %></td>
+        <td><%= link_to t('views.common.destroy'), report, method: :delete, data: { confirm: t('views.common.delete_confirm') } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -31,4 +29,4 @@
 
 <br>
 
-<%= link_to 'New Report', new_report_path %>
+<%= link_to t('views.common.new'), new_report_path %>
