@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<h1>Report</h1>
 
 <p>
   <strong>User:</strong>
@@ -19,7 +19,46 @@
   <%= @report.content %>
 </p>
 
+
+<h2>Comments</h2>
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Content</th>
+      <th>Time</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @comments.each do |comment| %>
+      <tr>
+        <% if comment.user.name == "" %>
+          <td><%= comment.user.email %></td>
+        <% else %>
+          <td><%= comment.user.name %></td>
+        <% end %>
+        <td><%= comment.content %></td>
+        <% if comment.created_at < comment.updated_at %>
+          <td><%= comment.updated_at %></td>
+        <% else %>
+          <td><%= comment.created_at %></td>
+        <% end %>
+        <td><%= link_to 'Show', [@report, comment] %></td>
+        <td><%= link_to 'Destroy', [@report, comment], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= render 'comments/new' %>
+
 <% if current_user.id == @report.user_id %>
   <%= link_to 'Edit', edit_report_path(@report) %> |
 <% end %>
 <%= link_to 'Back', reports_path %>
+
+
