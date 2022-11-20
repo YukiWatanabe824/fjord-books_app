@@ -13,8 +13,8 @@ class BooksController < ApplicationController
   # GET /books/1.json
   def show
     set_commentable
-    @comments = Book.find_by(id: params[:id]).comments.all
-    @comment = @commentable.comments.build
+    @comments = @book.comments.all
+    @comment = @book.comments.new
   end
 
   # GET /books/new
@@ -67,17 +67,18 @@ class BooksController < ApplicationController
 
   private
 
-  def set_commentable
-    @commentable = Book.find_by(id: params[:id])
-  end
-
   # Use callbacks to share common setup or constraints between actions.
   def set_book
     @book = Book.find(params[:id])
+  end
+
+  def set_commentable
+    @commentable = @book
   end
 
   # Only allow a list of trusted parameters through.
   def book_params
     params.require(:book).permit(:title, :memo, :author, :picture)
   end
+
 end

@@ -21,7 +21,9 @@
         <td><%= report.title %></td>
         <td><%= report.created_at %></td>
         <td><%= link_to t('views.common.show'), report %></td>
-        <td><%= link_to t('views.common.destroy'), report, method: :delete, data: { confirm: t('views.common.delete_confirm') } %></td>
+        <% if report.user == current_user %>
+          <td><%= link_to t('views.common.destroy'), report, method: :delete, data: { confirm: t('views.common.delete_confirm') } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

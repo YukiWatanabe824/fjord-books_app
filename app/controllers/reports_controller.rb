@@ -3,12 +3,12 @@
 class ReportsController < ApplicationController
   before_action :set_report, only: %i[show edit update destroy]
 
-  # GET /reports or /reports.json
+  # GET /reports
   def index
-    @reports = Report.all
+    @reports = Report.order(:id)
   end
 
-  # GET /reports/1 or /reports/1.json
+  # GET /reports/1
   def show
     set_commentable
     @comments = Report.find_by(id: params[:id]).comments.all
@@ -25,52 +25,48 @@ class ReportsController < ApplicationController
     redirect_to reports_path if @report.user.id != current_user.id
   end
 
-  # POST /reports or /reports.json
+  # POST /reports
   def create
     @report = Report.new(report_params)
 
-    respond_to do |format|
-      if @report.save
-        format.html { redirect_to report_url(@report), notice: t('controllers.common.notice_create', name: Report.model_name.human) }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-      end
+    if @report.save
+      redirect_to report_url(@report), notice: t('controllers.common.notice_create', name: Report.model_name.human)
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
-  # PATCH/PUT /reports/1 or /reports/1.json
+  # PATCH/PUT /reports/1
   def update
-    respond_to do |format|
-      if @report.update(report_params)
-        format.html { redirect_to report_url(@report), notice: t('controllers.common.notice_update', name: Report.model_name.human) }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-      end
+    if @report.update(report_params)
+      redirect_to report_url(@report), notice: t('controllers.common.notice_update', name: Report.model_name.human)
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
-  # DELETE /reports/1 or /reports/1.json
+  # DELETE /reports/1
   def destroy
-    @report.destroy
-
-    respond_to do |format|
-      format.html { redirect_to reports_url, notice: t('controllers.common.notice_destroy', name: Report.model_name.human) }
+    if @report.user != current_user
+      redirect_to reports_path
+    else
+      @report.destroy
+      redirect_to reports_url, notice: t('controllers.common.notice_destroy', name: Report.model_name.human)
     end
   end
 
   private
+    def set_commentable
+      @commentable = Report.find_by(id: params[:id])
+    end
 
-  def set_commentable
-    @commentable = Report.find_by(id: params[:id])
-  end
+    # Use callbacks to share common setup or constraints between actions.
+    def set_report
+      @report = Report.find(params[:id])
+    end
 
-  # Use callbacks to share common setup or constraints between actions.
-  def set_report
-    @report = Report.find(params[:id])
+    # Only allow a list of trusted parameters through.
+    def report_params
+      params.require(:report).permit(:user_id, :title, :content)
+    end
   end
-
-  # Only allow a list of trusted parameters through.
-  def report_params
-    params.require(:report).permit(:user_id, :title, :content)
-  end
-end
