@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 class CommentsController < ApplicationController
-  before_action :set_book_or_report
-  before_action :set_comment, only: %i[show edit update destroy]
+  before_action :set_comment, only: %i[show destroy]
 
   # GET /comments/1
   def show; end
@@ -10,19 +9,14 @@ class CommentsController < ApplicationController
   # POST /comments
   def create
     @comment = Comment.new(comment_params)
+    @comment[:user_id] = current_user.id
+    @comment[:commentable_id] = @commentable.id
+    @comment[:commentable_type] = @commentable.class
+
     if @comment.save
       redirect_to [@commentable], notice: t('controllers.common.notice_create', name: Comment.model_name.human)
     else
       render :new, status: :unprocessable_entity
-    end
-  end
-
-  # PATCH/PUT /comments/1
-  def update
-    if @comment.update(comment_params)
-      redirect_to comment_url(@comment), notice: t('controllers.common.notice_update', name: Comment.model_name.human)
-    else
-      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -34,14 +28,6 @@ class CommentsController < ApplicationController
   end
 
   private
-
-  def set_book_or_report
-    @commentable = if request.url.include?('reports')
-                     Report.find(params[:report_id])
-                   else
-                     Book.find(params[:book_id])
-                   end
-  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_comment

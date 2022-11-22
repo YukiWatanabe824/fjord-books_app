@@ -28,7 +28,7 @@ class ReportsController < ApplicationController
   # POST /reports
   def create
     @report = Report.new(report_params)
-
+    @report[:user_id] = current_user.id
     if @report.save
       redirect_to report_url(@report), notice: t('controllers.common.notice_create', name: Report.model_name.human)
     else
@@ -56,17 +56,18 @@ class ReportsController < ApplicationController
   end
 
   private
-    def set_commentable
-      @commentable = Report.find_by(id: params[:id])
-    end
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_report
-      @report = Report.find(params[:id])
-    end
-
-    # Only allow a list of trusted parameters through.
-    def report_params
-      params.require(:report).permit(:user_id, :title, :content)
-    end
+  def set_commentable
+    @commentable = Report.find_by(id: params[:id])
   end
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_report
+    @report = Report.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def report_params
+    params.require(:report).permit(:user_id, :title, :content)
+  end
+end

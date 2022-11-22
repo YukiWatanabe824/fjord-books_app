@@ -1,15 +1,10 @@
 Rails.application.routes.draw do
-  concern :commentable do
-    resources :comments, only: [:show, :edit, :create, :update, :destroy]
+  resources :reports do
+    resources :comments, only: [:create, :show, :destroy], module: :reports
   end
 
-  resources :reports do
-    concerns :commentable
-    resources :comments, only: [:create], module: :reports
-  end
   resources :books do
-    concerns :commentable
-    resources :comments, only: [:create], module: :books
+    resources :comments, only: [:create, :show, :destroy], module: :books
   end
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
