@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class ReportsController < ApplicationController
-  before_action :set_report, only: %i[show edit update destroy]
+  before_action :set_report, only: %i[show edit destroy]
+  before_action :set_updated_report, only: %i[update]
 
   # GET /reports
   def index
@@ -59,6 +60,10 @@ class ReportsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_report
     @report = Report.find(params[:id])
+  end
+
+  def set_updated_report
+    @report = current_user.reports.find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.
