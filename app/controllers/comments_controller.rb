@@ -9,9 +9,8 @@ class CommentsController < ApplicationController
   # POST /comments
   def create
     @comment = Comment.new(comment_params)
-    @comment[:user_id] = current_user.id
-    @comment[:commentable_id] = @commentable.id
-    @comment[:commentable_type] = @commentable.class
+    @comment.user = current_user
+    @comment.commentable = @commentable
 
     if @comment.save
       redirect_to [@commentable], notice: t('controllers.common.notice_create', name: Comment.model_name.human)
