@@ -10,9 +10,8 @@ class ReportsController < ApplicationController
 
   # GET /reports/1
   def show
-    set_commentable
-    @comments = Report.find_by(id: params[:id]).comments.all
-    @comment = @commentable.comments.build
+    @comments = @report.comments.all
+    @comment = @report.comments.new
   end
 
   # GET /reports/new
@@ -56,10 +55,6 @@ class ReportsController < ApplicationController
   end
 
   private
-
-  def set_commentable
-    @commentable = Report.find_by(id: params[:id])
-  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_report

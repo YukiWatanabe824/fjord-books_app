@@ -12,7 +12,6 @@ class BooksController < ApplicationController
   # GET /books/1
   # GET /books/1.json
   def show
-    set_commentable
     @comments = @book.comments.all
     @comment = @book.comments.new
   end
@@ -70,10 +69,6 @@ class BooksController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_book
     @book = Book.find(params[:id])
-  end
-
-  def set_commentable
-    @commentable = @book
   end
 
   # Only allow a list of trusted parameters through.
