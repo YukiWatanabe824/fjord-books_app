@@ -2,11 +2,7 @@
 
 <p>
   <strong><%= Comment.human_attribute_name(:user) %>:</strong>
-  <% if @comment.user.name == "" %>
-    <td><%= @comment.user.email %></td>
-  <% else %>
-    <td><%= @comment.user.name %></td>
-  <% end %>
+    <td><%= @comment.user.name_or_email %></td>
 </p>
 
 <p>
