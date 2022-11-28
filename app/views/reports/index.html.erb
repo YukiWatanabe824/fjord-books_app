@@ -13,7 +13,7 @@
   <tbody>
     <% @reports.each do |report| %>
       <tr>
-        <td><%= report.user.name_or_email(report.user) %></td>
+        <td><%= report.user.name_or_email %></td>
         <td><%= report.title %></td>
         <td><%= report.created_at %></td>
         <td><%= link_to t('views.common.show'), report %></td>

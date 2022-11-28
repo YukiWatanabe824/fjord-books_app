@@ -11,7 +11,7 @@
   <tbody>
     <% comments.each do |comment| %>
       <tr>
-        <td><%= comment.user.name_or_email(comment.user) %></td>
+        <td><%= comment.user.name_or_email %></td>
         <td><%= comment.content %></td>
         <% if comment.created_at < comment.updated_at %>
           <td><%= comment.updated_at %></td>

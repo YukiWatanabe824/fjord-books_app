@@ -31,11 +31,7 @@ class User < ApplicationRecord
     relationship&.destroy!
   end
 
-  def name_or_email(user)
-    if user.name == ''
-      user.email
-    else
-      user.name
-    end
+  def name_or_email
+    name.presence || email.presence
   end
 end
