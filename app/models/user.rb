@@ -12,6 +12,8 @@ class User < ApplicationRecord
 
   has_one_attached :avatar
 
+  has_many :reports, dependent: :destroy
+
   def following?(user)
     active_relationships.where(following_id: user.id).exists?
   end
@@ -27,5 +29,9 @@ class User < ApplicationRecord
   def unfollow(user)
     relationship = active_relationships.find_by(following_id: user.id)
     relationship&.destroy!
+  end
+
+  def name_or_email
+    name.presence || email.presence
   end
 end

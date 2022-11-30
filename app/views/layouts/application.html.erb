@@ -17,8 +17,11 @@
           <li>
             <%= link_to Book.model_name.human, books_path %>
           </li>
-          <li>
+           <li>
             <%= link_to User.model_name.human, users_path %>
+           </li>
+           <li>
+            <%= link_to '日報', reports_path %>
           </li>
         </ul>
         <div class="title"><%= t('.sign_in_as', email: current_user.email) %></div>

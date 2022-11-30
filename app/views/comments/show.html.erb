@@ -1,0 +1,23 @@
+<h1><%= t('views.common.title_show', name: Comment.model_name.human) %></h1>
+
+<p>
+  <strong><%= Comment.human_attribute_name(:user) %>:</strong>
+    <td><%= @comment.user.name_or_email %></td>
+</p>
+
+<p>
+  <strong><%= Comment.human_attribute_name(:content) %>:</strong>
+  <%= @comment.content %>
+</p>
+
+<p>
+  <strong><%= Comment.human_attribute_name(:posted_time) %>:</strong>
+  <%= @comment.created_at %>
+</p>
+
+<p>
+  <strong><%= Comment.human_attribute_name(:updated_time) %>:</strong>
+  <%= @comment.updated_at %>
+</p>
+
+<%= link_to t('views.common.back'), @commentable %>

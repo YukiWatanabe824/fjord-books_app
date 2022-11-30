@@ -11,7 +11,10 @@ class BooksController < ApplicationController
 
   # GET /books/1
   # GET /books/1.json
-  def show; end
+  def show
+    @comments = @book.comments.all
+    @comment = @book.comments.new
+  end
 
   # GET /books/new
   def new
