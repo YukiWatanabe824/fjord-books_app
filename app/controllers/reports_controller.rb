@@ -2,7 +2,7 @@
 
 class ReportsController < ApplicationController
   before_action :set_report, only: %i[show edit destroy]
-  before_action :set_updated_report, only: %i[update]
+  before_action :set_updated_report, only: %i[update edit destroy]
 
   # GET /reports
   def index
@@ -21,9 +21,7 @@ class ReportsController < ApplicationController
   end
 
   # GET /reports/1/edit
-  def edit
-    redirect_to reports_path if @report.user.id != current_user.id
-  end
+  def edit; end
 
   # POST /reports
   def create
@@ -46,12 +44,8 @@ class ReportsController < ApplicationController
 
   # DELETE /reports/1
   def destroy
-    if @report.user != current_user
-      redirect_to reports_path
-    else
-      @report.destroy
-      redirect_to reports_url, notice: t('controllers.common.notice_destroy', name: Report.model_name.human)
-    end
+    @report.destroy
+    redirect_to reports_url, notice: t('controllers.common.notice_destroy', name: Report.model_name.human)
   end
 
   private
@@ -67,6 +61,6 @@ class ReportsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def report_params
-    params.require(:report).permit(:user_id, :title, :content)
+    params.require(:report).permit(:title, :content)
   end
 end
