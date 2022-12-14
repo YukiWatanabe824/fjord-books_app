@@ -9,7 +9,7 @@ class ReportTest < ActiveSupport::TestCase
     @user1_report = reports(:one)
   end
 
-  test '#editable?_test' do
+  test '#editable?' do
     assert_not @user1_report.editable?(@user2)
     assert @user1_report.editable?(@user1)
   end
