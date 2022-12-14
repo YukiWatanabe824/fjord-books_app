@@ -5,5 +5,5 @@ one:
   follower_id: 1
 
 two:
-  following_id: 1
-  follower_id: 1
+  following_id: 2
+  follower_id: 2
